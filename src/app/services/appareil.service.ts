@@ -27,6 +27,12 @@ export class AppareilService {
         }
  
        } 
-      
+      swichOnOne(index: number){
+       this.appareils[index].status ='allumé';
 
+      }
+      swichOfOne(index: number){
+        this.appareils[index].status ='éteint';
+ 
+       }
 }
