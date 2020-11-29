@@ -9,8 +9,8 @@
         [appareilStatus]="appareil.status"></app-appareil>
       </ul>
       <button class="btn btn-success" 
-      [disabled]="!isAuth"
       (click)="onAllumer()" >Tout allume</button>
+      <button class="btn btn-danger" (click)="onEteindre()">Tout éteindre</button>
     </div>
   </div>
 </div>
