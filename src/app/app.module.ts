@@ -6,6 +6,7 @@ import { MonPremierComponent } from './mon-premier/mon-premier.component';
 import { AppareilComponent } from './appareil/appareil.component';
 import { FormsModule } from '@angular/forms';
 import { AppareilService } from './services/appareil.service';
+import { AuthService} from './services/auth.service';
 import { AuthComponent } from './auth/auth.component';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,8 +14,8 @@ import { RouterModule, Routes } from '@angular/router';
 const appRootes: Routes = [
 { path: 'appareils', component: AppareilViewComponent},
 { path: 'auth' , component: AuthComponent },
-{  path: ''  , component:AppareilViewComponent}                   
-
+{  path: ''  , component:AppareilViewComponent}                  
+  
 ]
 
 @NgModule({
@@ -31,7 +32,8 @@ const appRootes: Routes = [
     RouterModule.forRoot(appRootes)
   ],
   providers: [
-    AppareilService /* instance crée */
+    AppareilService, /* instance crée */
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
