@@ -37,7 +37,7 @@ const appRootes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRootes)
+    RouterModule.forRoot(appRootes, { relativeLinkResolution: 'legacy' })
   ],
   providers: [
     AppareilService, /* instance crée */

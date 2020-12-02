@@ -1,5 +1,7 @@
 import { resolve } from 'url';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class AuthService {
 isAuth = false;
 
