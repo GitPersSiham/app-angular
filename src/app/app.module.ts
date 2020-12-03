@@ -13,10 +13,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { EditAppareilComponentComponent } from './edit-appareil-component/edit-appareil-component.component';
 
 const appRootes: Routes = [
 { path: 'appareils', canActivate: [AuthGuard] ,component: AppareilViewComponent},
 { path: 'appareils/:id', canActivate: [AuthGuard]  , component:SingleAppareilComponent},
+{ path: 'edit',canActivate: [AuthGuard], component: EditAppareilComponentComponent},
 { path: 'auth' , component: AuthComponent },
 { path: ''  , component:AppareilViewComponent},
 { path: 'not-found', component:PageNotFoundComponent},
@@ -32,7 +34,8 @@ const appRootes: Routes = [
     AuthComponent,
     AppareilViewComponent,
     SingleAppareilComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    EditAppareilComponentComponent
   ],
   imports: [
     BrowserModule,
