@@ -14,12 +14,15 @@ import { SingleAppareilComponent } from './single-appareil/single-appareil.compo
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { EditAppareilComponentComponent } from './edit-appareil-component/edit-appareil-component.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserService } from './services/user.service';
 
 const appRootes: Routes = [
 { path: 'appareils', canActivate: [AuthGuard] ,component: AppareilViewComponent},
 { path: 'appareils/:id', canActivate: [AuthGuard]  , component:SingleAppareilComponent},
 { path: 'edit',canActivate: [AuthGuard], component: EditAppareilComponentComponent},
 { path: 'auth' , component: AuthComponent },
+{ path: 'users', component: UserListComponent},
 { path: ''  , component:AppareilViewComponent},
 { path: 'not-found', component:PageNotFoundComponent},
 { path: '**', redirectTo: '/not-found'},
@@ -35,7 +38,8 @@ const appRootes: Routes = [
     AppareilViewComponent,
     SingleAppareilComponent,
     PageNotFoundComponent,
-    EditAppareilComponentComponent
+    EditAppareilComponentComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,8 @@ const appRootes: Routes = [
   providers: [
     AppareilService, /* instance crée */
     AuthService,
-    AuthGuard
+    AuthGuard,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
