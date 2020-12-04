@@ -1,24 +1,17 @@
+import { Subject } from 'rxjs/Subject';
 import { Injectable } from "@angular/core";
+import { HttpClient } from '@angular/common/http'
+
 @Injectable()
 export class AppareilService {
+  appareilsSubject = new Subject<any[]>();
 
-       appareils = [
-        {
-          id: 1,
-          name: 'Machine à laver',
-          status: 'éteint'
-        },
-        {
-          id: 2,
-          name: 'Frigo',
-          status: 'allumé'
-        },
-        {
-          id:3,
-          name: 'Ordinateur',
-          status: 'éteint'
-        }
-      ];
+    private appareils = [];
+    
+
+      constructor(private HttpClient: HttpClient){
+
+      }
 
       getAppareilById(id: number){
        const appareil = this.appareils.find(
@@ -28,7 +21,12 @@ export class AppareilService {
        );
        return appareil
       }
-    
+
+      emitAppareilSubject() {
+        this.appareilsSubject.next(this.appareils.slice());
+      }
+
+
       switchOnAll(){
        for(let appareil of this.appareils){
            appareil.status = 'allumé'
@@ -60,4 +58,35 @@ export class AppareilService {
         appareilObject.id = this.appareils[(this.appareils.length-1)].id + 1;
         this.appareils.push(appareilObject);
        }
+
+       SaveAppareilsToServer() {
+        this.HttpClient
+        .put('https://http-client-demo-45172-default-rtdb.firebaseio.com/appareils.json', this.appareils)
+        .subscribe(
+          () => {
+           console.log('Enregistrement terminé !');
+          },
+          (error) => {
+           console.log('Erreur  de sauvgarde' + error);
+          }
+        );
+       }
+
+       getAppareilsFromServer(){
+        this.HttpClient
+        .get<any[]>('https://http-client-demo-45172-default-rtdb.firebaseio.com/appareils.json')
+         .subscribe(
+           (response) => {
+             this.appareils = response;
+             this.emitAppareilSubject();
+
+           },
+           (error) => {
+
+            console.log('Erreur  de sauvgarde' + error);
+           }
+         )               
+
+       }
+
 }
