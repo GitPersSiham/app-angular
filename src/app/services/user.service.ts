@@ -10,10 +10,7 @@ private users: User[] = [
     lastName: 'Lahouali',
     email: 'lahoualisiham91@gmail.com',
     drinkPreference: 'jus',
-    hobbies: [
-        'coder', 
-        'sport'
-    ]
+   
  }
 
 ];

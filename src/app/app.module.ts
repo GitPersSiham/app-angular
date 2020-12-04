@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MonPremierComponent } from './mon-premier/mon-premier.component';
 import { AppareilComponent } from './appareil/appareil.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { AppareilService } from './services/appareil.service';
 import { AuthService} from './services/auth.service';
 import { AuthComponent } from './auth/auth.component';
@@ -16,6 +16,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { EditAppareilComponentComponent } from './edit-appareil-component/edit-appareil-component.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserService } from './services/user.service';
+import { NewUserComponent } from './new-user/new-user.component';
 
 const appRootes: Routes = [
 { path: 'appareils', canActivate: [AuthGuard] ,component: AppareilViewComponent},
@@ -23,6 +24,7 @@ const appRootes: Routes = [
 { path: 'edit',canActivate: [AuthGuard], component: EditAppareilComponentComponent},
 { path: 'auth' , component: AuthComponent },
 { path: 'users', component: UserListComponent},
+{ path: 'new-user', component: NewUserComponent},
 { path: ''  , component:AppareilViewComponent},
 { path: 'not-found', component:PageNotFoundComponent},
 { path: '**', redirectTo: '/not-found'},
@@ -39,12 +41,15 @@ const appRootes: Routes = [
     SingleAppareilComponent,
     PageNotFoundComponent,
     EditAppareilComponentComponent,
-    UserListComponent
+    UserListComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRootes, { relativeLinkResolution: 'legacy' })
+    RouterModule.forRoot(appRootes, { relativeLinkResolution: 'legacy' }),
+    ReactiveFormsModule
+
   ],
   providers: [
     AppareilService, /* instance crée */
